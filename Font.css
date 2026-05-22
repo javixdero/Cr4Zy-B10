@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'MiNosifer';
+    src: url('Nosifer-Regular.ttf') format('truetype')
+}
+
+.Letraini {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    margin: 0;
+    font-family: 'MiNosifer', sans-serif;
+    font-size: 7rem;
+    color: #bc0000;
+    text-shadow: 4px 4px 0px #000000;
+}

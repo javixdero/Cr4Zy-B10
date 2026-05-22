@@ -10,7 +10,31 @@
     <video autoplay muted loop id="LucesFondo">
   <source src="Luces.mp4" type="video/mp4">
 </video>
-  <button onclick="document.documentElement.requestFullscreen()">Pantalla completa</button>
-   <p style="color:#888;">para pantalla completa</p>
-</body>
-</html>
+
+<h1 id="titulo">ESTAS PREPARADO?</h1>
+
+<button id="botonInicio">
+  <video autoplay muted loop id="VideoBoton">
+    <source src="Luces.mp4">
+  </video>
+  <span>ACTIVAR CAOS</span>
+</button>
+
+<script>
+const botonInicio = document.getElementById('botonInicio');
+const fondoVideo = document.getElementById('fondoVideo');
+const titulo = document.getElementById('titulo');
+
+botonInicio.addEventListener('click', () {
+  if(document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  }
+  fondoVideo.play();
+  botonInicio.style.display = 'none';
+  titulo.style.display = 'none'} 
+
+  const juegos = [
+    { nombre: 'Tranquilidad', url: 'juegos/juego1.html'}
+    { nombre: 'Click Lento', url: 'juegos/juego2.html'}
+    { nombre: 'Matematicas Faciles', url: 'juegos/juego3.html'}
+  ]
