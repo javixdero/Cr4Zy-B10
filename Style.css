@@ -8,11 +8,8 @@ object-fit: cover;
 z-index: -1
 }
 
-#BotónInicio {
-position: absolute;
-top:80%;
-left: 50%;
-transform: translate(-50%, -50%);
+#btn1, #btn2, #btn3 {
+position: fixed;
 width: 500px;
 height: 150px;
 font-size: 4rem;
@@ -20,9 +17,12 @@ cursor: pointer;
 overflow: hidden; 
 background-color: black;
 border: 2px solid white;
+display: inline-flex;
+align-items: center;
+justify-content: center;
 }
 
-#LucesBoton {
+#btn1 video, #btn2 video, #btn3 video {
 position: absolute;
 top: 0;
 left: 0;
@@ -32,9 +32,11 @@ object-fit: cover;
 z-index: 1;
 }
 
-#BotónInicio span {
+#btn1 span, #btn2 span, #btn3 span {
 position: relative;
 z-index: 2;
 color: white;
 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+text-align: center;
+white-space: nowrap;
 }

@@ -1,40 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cr4Zy B10</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="Style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cr4Zy B10</title>
+  <link rel="stylesheet" href="Font.css">
 </head>
 <body>
-    <video autoplay muted loop id="LucesFondo">
+<div id="ContenedorFondo">
+  <video muted loop id="LucesFondo">
   <source src="Luces.mp4" type="video/mp4">
-</video>
-
-<h1 id="titulo">ESTAS PREPARADO?</h1>
-
-<button id="botonInicio">
-  <video autoplay muted loop id="VideoBoton">
-    <source src="Luces.mp4">
   </video>
-  <span>ACTIVAR CAOS</span>
+<button type="button" id="btn1" onclick="activarVideo()">
+  <video autoplay muted loop id="LucesBoton"><source src="Luces.mp4" type="video/mp4"></video>
+  <span>Estas Preparado?</span>
 </button>
-
-<script>
-const botonInicio = document.getElementById('botonInicio');
-const fondoVideo = document.getElementById('fondoVideo');
-const titulo = document.getElementById('titulo');
-
-botonInicio.addEventListener('click', () {
-  if(document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen();
+<button type="button" id="btn2" onclick="activarVideo()">
+  <video autoplay muted loop><source src="Luces.mp4" type="video/mp4"></video>
+  <span>Estas Preparado?</span>
+</button>
+<button type="button" id="btn3" onclick="activarVideo()">
+  <video autoplay muted loop><source src="Luces.mp4" type="video/mp4"></video>
+  <span>Estas Preparado?</span>
+</button>
+<h1 id="titulo" class="Letraini"> ESTAS PREPARADO?</h1>
+<script> 
+  const botones = [
+    { id: 'btn1', x: window.innerWidth * 0.2, y: window.innerHeight * 0.8, dx: 3, dy: -3 },
+    { id: 'btn2', x: window.innerWidth * 0.5, y: window.innerHeight * 0.8, dx: -2, dy: 4 },
+    { id: 'btn3', x: window.innerWidth * 0.8, y: window.innerHeight * 0.8, dx: 4, dy: 2 }
+  ];
+  function moverBotones() {
+    botones.forEach(b => {
+      const el = document.getElementById(b.id);
+      if (!el || el.style.display === 'none') return;
+      b.x += b.dx;
+      b.y += b.dy;
+      if (b.x <= 0 || b.x + el.offsetWidth >= window.innerWidth) {
+        b.dx *= -1;
+        b.x = b.x <= 0 ? 0 : window.innerWidth - el.offsetWidth;
+      }
+      if (b.y <= 0 || b.y + el.offsetHeight >= window.innerHeight) {
+        b.dy *= -1;
+        b.y = b.y <= 0 ? 0 : window.innerHeight - el.offsetHeight;
+      }
+      el.style.left = b.x + 'px';
+      el.style.top = b.y + 'px';
+      el.style.transform = 'none';
+    });
+    requestAnimationFrame(moverBotones);
   }
-  fondoVideo.play();
-  botonInicio.style.display = 'none';
-  titulo.style.display = 'none'} 
-
-  const juegos = [
-    { nombre: 'Tranquilidad', url: 'juegos/juego1.html'}
-    { nombre: 'Click Lento', url: 'juegos/juego2.html'}
-    { nombre: 'Matematicas Faciles', url: 'juegos/juego3.html'}
-  ]
+  requestAnimationFrame(moverBotones);
+  function activarVideo() {
+    const contenedor = document.getElementById('ContenedorFondo');
+    const fondo = document.getElementById('LucesFondo');
+    if (contenedor.requestFullscreen) { contenedor.requestFullscreen(); }
+    else if (contenedor.webkitRequestFullscreen) { contenedor.webkitRequestFullscreen(); }
+    else if (contenedor.msRequestFullscreen) { contenedor.msRequestFullscreen(); }
+    fondo.play();
+    document.getElementById('titulo').style.display = 'none';
+    document.querySelector('#btn1 span').innerText = 'Matemáticas Fáciles';
+    document.querySelector('#btn2 span').innerText = 'Click Lento';
+    document.querySelector('#btn3 span').innerText = 'Tranquilidad';
+    document.getElementById('btn1').setAttribute('onclick', "window.location.href='juego1.html'");
+    document.getElementById('btn2').setAttribute('onclick', "window.location.href='juego2.html'");
+    document.getElementById('btn3').setAttribute('onclick', "window.location.href='juego3.html'");
+  }
+</script>
+</body>
+</html>
